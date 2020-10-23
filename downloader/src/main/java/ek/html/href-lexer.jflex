@@ -30,10 +30,7 @@ HrefChar2 = [^\r\n\'>]
 
 WhiteSpace = {LineTerminator} | [ \t\f]
 
-
 AStart = "<" [aA] {WhiteSpace}+
-
-ATag = "<" [aA] [^>]+ ">"
 
 HrefBase = [hH] [rR] [eE] [fF] {WhiteSpace}* "=" {WhiteSpace}* 
 Href1 = {HrefBase} "\""
@@ -46,12 +43,13 @@ Href2 = {HrefBase} "\'"
 %%
 
 <YYINITIAL> {
-  {ATag}                { yybegin(A_STATE);}
+  {AStart}              { yybegin(A_STATE); }
 }
 
 <A_STATE> {
   {Href1}               { yybegin(STRING_STATE1); string.setLength(0); }
   {Href2}               { yybegin(STRING_STATE2); string.setLength(0); }
+  ">"                   { yybegin(YYINITIAL); }
 }
 
 <STRING_STATE1> {
