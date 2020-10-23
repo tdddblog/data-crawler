@@ -96,8 +96,8 @@ public class HrefLexer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\4\0\3\1\1\2\2\3\1\4\1\5\1\2\2\0"+
-    "\1\6\3\0\1\7\1\10";
+    "\4\0\3\1\1\2\2\3\1\4\1\2\4\0\1\5"+
+    "\2\0\1\6\1\7";
 
   private static int [] zzUnpackAction() {
     int [] result = new int[21];
@@ -126,8 +126,8 @@ public class HrefLexer {
 
   private static final String ZZ_ROWMAP_PACKED_0 =
     "\0\0\0\16\0\34\0\52\0\70\0\106\0\124\0\142"+
-    "\0\70\0\160\0\70\0\70\0\176\0\214\0\232\0\214"+
-    "\0\250\0\266\0\304\0\70\0\70";
+    "\0\70\0\160\0\70\0\176\0\214\0\232\0\250\0\266"+
+    "\0\70\0\304\0\322\0\70\0\70";
 
   private static int [] zzUnpackRowMap() {
     int [] result = new int[21];
@@ -154,15 +154,16 @@ public class HrefLexer {
 
   private static final String ZZ_TRANS_PACKED_0 =
     "\6\5\1\6\23\5\1\7\1\5\2\10\1\11\1\12"+
-    "\1\13\3\10\1\14\5\10\2\15\1\11\1\12\1\15"+
-    "\1\13\2\15\1\14\5\15\27\0\1\16\21\0\1\17"+
+    "\1\13\3\10\1\5\5\10\2\14\1\11\1\12\1\14"+
+    "\1\13\2\14\1\5\5\14\27\0\1\15\21\0\1\16"+
     "\2\10\3\0\3\10\1\0\5\10\2\0\1\11\13\0"+
-    "\2\15\2\0\1\15\1\0\2\15\1\0\5\15\1\0"+
-    "\3\20\24\0\1\21\16\0\1\22\3\0\3\22\3\0"+
-    "\1\23\7\0\3\23\1\24\1\25\10\0";
+    "\2\14\2\0\1\14\1\0\2\14\1\0\5\14\10\17"+
+    "\1\0\5\17\12\0\1\20\3\0\10\17\1\21\5\17"+
+    "\13\0\1\22\3\0\3\22\3\0\1\23\7\0\3\23"+
+    "\1\24\1\25\10\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[210];
+    int [] result = new int[224];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -205,8 +206,8 @@ public class HrefLexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\4\0\1\11\3\1\1\11\1\1\2\11\1\1\2\0"+
-    "\1\1\3\0\2\11";
+    "\4\0\1\11\3\1\1\11\1\1\1\11\1\1\4\0"+
+    "\1\11\2\0\2\11";
 
   private static int [] zzUnpackAttribute() {
     int [] result = new int[21];
@@ -693,42 +694,37 @@ public String getString() {
             { 
             }
             // fall through
-          case 9: break;
+          case 8: break;
           case 2:
             { string.append(yytext());
             }
             // fall through
-          case 10: break;
+          case 9: break;
           case 3:
             { throw new RuntimeException("Unterminated href at end of line " + yyline+1);
             }
             // fall through
-          case 11: break;
+          case 10: break;
           case 4:
             { yybegin(YYINITIAL); return HREF;
             }
             // fall through
-          case 12: break;
+          case 11: break;
           case 5:
-            { throw new RuntimeException("Unterminated href at column " + yycolumn+1);
-            }
-            // fall through
-          case 13: break;
-          case 6:
             { yybegin(A_STATE);
             }
             // fall through
-          case 14: break;
-          case 7:
+          case 12: break;
+          case 6:
             { yybegin(STRING_STATE1); string.setLength(0);
             }
             // fall through
-          case 15: break;
-          case 8:
+          case 13: break;
+          case 7:
             { yybegin(STRING_STATE2); string.setLength(0);
             }
             // fall through
-          case 16: break;
+          case 14: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

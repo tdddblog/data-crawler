@@ -32,6 +32,9 @@ WhiteSpace = {LineTerminator} | [ \t\f]
 
 
 AStart = "<" [aA] {WhiteSpace}+
+
+ATag = "<" [aA] [^>]+ ">"
+
 HrefBase = [hH] [rR] [eE] [fF] {WhiteSpace}* "=" {WhiteSpace}* 
 Href1 = {HrefBase} "\""
 Href2 = {HrefBase} "\'"
@@ -43,7 +46,7 @@ Href2 = {HrefBase} "\'"
 %%
 
 <YYINITIAL> {
-  {AStart}              { yybegin(A_STATE);}
+  {ATag}                { yybegin(A_STATE);}
 }
 
 <A_STATE> {
@@ -54,14 +57,12 @@ Href2 = {HrefBase} "\'"
 <STRING_STATE1> {
   \"                    { yybegin(YYINITIAL); return HREF; }
   {HrefChar1}+          { string.append(yytext()); }
-  ">"                   { throw new RuntimeException("Unterminated href at column " + yycolumn+1); }
   {LineTerminator}      { throw new RuntimeException("Unterminated href at end of line " + yyline+1); }
 }
 
 <STRING_STATE2> {
   \'                    { yybegin(YYINITIAL); return HREF; }
   {HrefChar2}+          { string.append(yytext()); }
-  ">"                   { throw new RuntimeException("Unterminated href at column " + yycolumn+1); }
   {LineTerminator}      { throw new RuntimeException("Unterminated href at end of line " + yyline+1); }
 }
 

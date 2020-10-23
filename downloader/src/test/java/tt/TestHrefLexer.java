@@ -13,7 +13,7 @@ public class TestHrefLexer
 
     public static void main(String[] args) throws Exception
     {
-        File file = new File("/ws3/test1.html");
+        File file = new File("/tmp/context2.html");
         Reader rd = new BufferedReader(new FileReader(file));
         HrefLexer lex = new HrefLexer(rd);
         
@@ -22,12 +22,36 @@ public class TestHrefLexer
         {
             if(ttype == HrefLexer.HREF)
             {
-                System.out.println(lex.getString());
+                String href = lex.getString();
+                
+                String tmp = href.toLowerCase();
+                if(tmp.endsWith(".xml"))
+                {
+                    System.out.println(href);
+                }
+                else if(href.endsWith("/"))
+                {
+                    if(isValidSubdir(tmp))
+                    {
+                        System.out.println(href);
+                    }
+                }
             }
         }
         
         rd.close();
 
+    }
+    
+    
+    private static boolean isValidSubdir(String href)
+    {
+        if(href.startsWith("/")) return false;
+        if(href.equals("../") || href.equals("./")) return false;
+        
+        if(href.startsWith("http://") || href.startsWith("https://")) return false;
+        
+        return true;
     }
 
 }
