@@ -114,7 +114,6 @@ public class WebCrawler
         {
             String folderUrl = (folder.startsWith("/")) ? baseUrl + folder : baseUrl + path + folder;
             folders.add(folderUrl);
-            System.out.println("*********** " + folderUrl);
         }        
     }
 

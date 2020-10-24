@@ -35,7 +35,7 @@ public class TestWebCrawler
     
     public static void main(String[] args) throws Exception
     {
-        test1();
+        //testWeb();
     }
 
     
@@ -57,8 +57,10 @@ public class TestWebCrawler
     {
         String url = "https://pds.nasa.gov/data/pds4/context-pds4";
         
-        WebCrawler crawler = new WebCrawler(new MyCB2());
+        HrefWriter writer = new HrefWriter(new File("/tmp/refs.txt"));
+        WebCrawler crawler = new WebCrawler(writer);
         crawler.crawl(url);
+        writer.close();
     }
 
 }
